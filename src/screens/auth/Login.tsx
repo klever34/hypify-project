@@ -22,7 +22,7 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [message, setErrorMessage] = useState<string>("");
   const [loading, showLoading] = useState<boolean>(false);
-  const [errors,  setErrors] = useState();
+  // const [errors,  setErrors] = useState();
 
   useEffect(() => {
     async function checkAuth() {
