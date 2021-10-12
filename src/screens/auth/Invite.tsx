@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import backgroundImageHorizontal from "../../assets/images/bg_landscape.png";
 import backgroundImageVertical from "../../assets/images/bg_portrait.png";
 import Footer from "../../components/footer/Footer";
 import { Box, Typography, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import {
-  registerAsync,
-  selectStateValues,
-} from "../../app/auth-redux/authSlice";
+// import { useAppSelector, useAppDispatch } from "../../app/hooks";
+// import {
+//   registerAsync,
+//   selectStateValues,
+// } from "../../app/auth-redux/authSlice";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import axios from "axios";
 import { baseUrl } from "../../constants";
@@ -18,10 +18,10 @@ import { useHistory, useLocation } from "react-router-dom";
 import queryString from "query-string";
 
 const Invite: React.FC = () => {
-  const auth = useAppSelector(selectStateValues);
-  const dispatch = useAppDispatch();
+//   const auth = useAppSelector(selectStateValues);
+//   const dispatch = useAppDispatch();
   const classes = useStyles();
-  const [email, setEmail] = useState<string>("");
+//   const [setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
@@ -30,7 +30,7 @@ const Invite: React.FC = () => {
   const history = useHistory();
   const [message, setErrorMessage] = useState<string>("");
   const [showMsg, setMsg] = useState<boolean>(false);
-  const [showAlert, setAlert] = useState<boolean>(false);
+//   const [showAlert, setAlert] = useState<boolean>(false);
   const [loading, showLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState([]);
   const { search } = useLocation();
@@ -44,12 +44,12 @@ const Invite: React.FC = () => {
       }
     }
     checkAuth();
-  }, []);
+  }, [history]);
 
-  const handleChangeEmail = (text: React.ChangeEvent<HTMLInputElement>) => {
-    const email = text.currentTarget.value;
-    setEmail(email);
-  };
+//   const handleChangeEmail = (text: React.ChangeEvent<HTMLInputElement>) => {
+//     const email = text.currentTarget.value;
+//     setEmail(email);
+//   };
 
   const handleChangePassword = (text: React.ChangeEvent<HTMLInputElement>) => {
     const password = text.currentTarget.value;

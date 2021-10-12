@@ -6,12 +6,12 @@ import Login from "./screens/auth/Login";
 import Register from "./screens/auth/Register";
 import ResetPassword from "./screens/auth/ResetPassword";
 import Profile from "./screens/profile/Profile";
-import Activity from "./screens/activity/";
+// import Activity from "./screens/activity/";
 import Dashboard from "./components/Dashboard/Dashboard";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import ProtectedRoute from "./components/ProtectedRoute";
-import { useAppSelector } from "./app/hooks";
-import { selectStateValues } from "./app/auth-redux/authSlice";
+// import ProtectedRoute from "./components/ProtectedRoute";
+// import { useAppSelector } from "./app/hooks";
+// import { selectStateValues } from "./app/auth-redux/authSlice";
 import UpdatePassword from "./screens/auth/UpdatePassword";
 import ValidateEmail from "./screens/auth/ValidateEmail";
 import Invite from "./screens/auth/Invite";
@@ -43,7 +43,7 @@ const theme = createMuiTheme({
 });
 
 function App() {
-  const auth = useAppSelector(selectStateValues);
+  // const auth = useAppSelector(selectStateValues);
 
   return (
     <Router>

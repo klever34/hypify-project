@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
@@ -6,14 +6,14 @@ import Typography from "@material-ui/core/Typography";
 import Badge from "@material-ui/core/Badge";
 import Header from "../../components/header/NavHeader";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles, Theme } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import AvatarImg from "../../assets/images/avatar2.png";
 import Avatar from "@material-ui/core/Avatar";
 import Footer from "../../components/footer/Footer";
 import { red, deepPurple } from "@material-ui/core/colors";
-import { useAppSelector } from "../../app/hooks";
-import { selectStateValues } from "../../app/auth-redux/authSlice";
+// import { useAppSelector } from "../../app/hooks";
+// import { selectStateValues } from "../../app/auth-redux/authSlice";
 import { useHistory } from "react-router-dom";
 import { baseUrl } from "../../constants";
 import axios from "axios";
@@ -77,8 +77,8 @@ const ProfilePage: React.FC = () => {
   const history = useHistory();
   const classes = useStyles();
   const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [message, setErrorMessage] = useState<string>("");
+  // const [password, setPassword] = useState<string>("");
+  // const [message, setErrorMessage] = useState<string>("");
   const [loading, showLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState([]);
   const [showMsg, setMsg] = useState<boolean>(false);
@@ -118,7 +118,7 @@ const ProfilePage: React.FC = () => {
       if (response.status === 201) {
         setMsg(true);
       } else {
-        setErrorMessage("Failed Authentication");
+        // setErrorMessage("Failed Authentication");
       }
       showLoading(false);
     } catch (error: any) {

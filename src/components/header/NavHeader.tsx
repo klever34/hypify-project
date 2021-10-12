@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import { Toolbar, AppBar, Box } from "@material-ui/core";
+import { Toolbar, Box } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import menuImg from "../../assets/images/menu.png";
@@ -60,7 +60,7 @@ const Header: React.FC = () => {
           <Typography variant="h3" className={classes.menuBox}>
             <Link to={"/dashboard"} style={{ textDecoration: "none" }}>
               <Box className={classes.navText}>Dashboard</Box>
-              {location == "dashboard" ? (
+              {location === "dashboard" ? (
                 <div className={classes.smallDot}></div>
               ) : null}
             </Link>
@@ -87,7 +87,7 @@ const Header: React.FC = () => {
                 style={{ border: "none" }}
                 onClick={handleClick}
               >
-                <img src={dropdown} width="15px" />
+                <img src={dropdown} alt="" width="15px" />
               </button>
               {open ? (
                 <div className={classes.dropdown}>
@@ -114,28 +114,28 @@ const Header: React.FC = () => {
   );
 };
 
-const styles = {
-  modal: {
-    backgroundColor: "transparent",
-    boxShadow: "none",
-    display: "flex",
-    overflow: "none",
-    width: "50%",
-    padding: "0",
-    margin: "0",
-    height: "100vh",
-    minWidth: "50%",
-    justifyContent: "center",
-    zIndex: 1,
-  },
-  overlay: {
-    backgroundColor: "#1cccc",
-    padding: 0,
-  },
-  closeIcon: {
-    fill: "#fff",
-  },
-};
+// const styles = {
+//   modal: {
+//     backgroundColor: "transparent",
+//     boxShadow: "none",
+//     display: "flex",
+//     overflow: "none",
+//     width: "50%",
+//     padding: "0",
+//     margin: "0",
+//     height: "100vh",
+//     minWidth: "50%",
+//     justifyContent: "center",
+//     zIndex: 1,
+//   },
+//   overlay: {
+//     backgroundColor: "#1cccc",
+//     padding: 0,
+//   },
+//   closeIcon: {
+//     fill: "#fff",
+//   },
+// };
 
 const useStyles = makeStyles((theme) => ({
   root2: {

@@ -1,37 +1,17 @@
-import React,{useEffect, useState} from 'react'
+import React from 'react'
 import Header from '../header/NavHeader'
 import { makeStyles } from "@material-ui/core/styles";
-import {Typography,Box,Button} from "@material-ui/core";
+import {Typography} from "@material-ui/core";
 import background from '../../assets/images/background.svg'
-import LineCharting from '../Visual/Visual'
-import DoughtnutContainer from '../Visual/Doughnut/DoughnutContainer';
-import ChartContainer from '../Visual/chart/chartContainer'
-import ClockInModal from './clockin'
 import Footer from '../footer/Footer'
 import {useAppSelector} from '../../app/hooks'
 import {selectStateValues} from '../../app/auth-redux/authSlice'
 
 const Dashboard:React.FC = () => {
 
-const [openCi, setOpenCi] = useState<boolean>(false);
-const [openCo, setOpenCo] = useState<boolean>(false);
-let [update,setUpdate] = useState(false)
-
 const {userData} = useAppSelector(selectStateValues)
  const classes = useStyles()
 
-
- const showModal = (name:string) => {
-    //  setUpdate(true)
-    setUpdate(!update)
-     if(name == 'clockIn'){
-         setOpenCi(true)
-         setOpenCo(false)
-     }else if(name =='clockOut'){
-         setOpenCo(true)
-         setOpenCi(false)
-     }
- }
 
     return (
         <>
@@ -49,17 +29,6 @@ const {userData} = useAppSelector(selectStateValues)
                     </Button> 
                 </Box>      */}
             </Typography>
-            <div style={{marginTop:'5rem'}} >
-               <LineCharting instance="Coins Activities" timing1="Gain" timing2="Loss" update={update}/>
-            </div>
-            {/* <Box component="span" className={classes.hours}>
-                <h3 className={classes.text} style={{color:"#5019EE"}}>Punctual days</h3>
-                <h3 className={classes.text}  style={{color:"#5019EE"}}>Late Days</h3>
-            </Box> */}
-            <ChartContainer instance="Dollars Activities" timing1="Wins" timing2="Failed" update={update}/>
-                {/* <div style={{marginTop:'3rem'}}>
-                    <LineCharting instance="Stats/Closing Hours" timing1="close Early" timing2="close Normal/late"/>
-                </div> */}
             <Footer/>           
         </>
     )

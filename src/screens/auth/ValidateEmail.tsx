@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import backgroundImageHorizontal from "../../assets/images/bg_landscape.png";
 import backgroundImageVertical from "../../assets/images/bg_portrait.png";
 import Footer from "../../components/footer/Footer";
-import { Checkbox, Box, Typography, Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Box, Typography } from "@material-ui/core";
+// import { Link } from "react-router-dom";
 import axios from "axios";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { baseUrl } from "../../constants";
@@ -13,8 +13,8 @@ import { useHistory, useLocation } from "react-router-dom";
 import { Alert } from "@material-ui/lab";
 
 const ValidateEmail: React.FC = () => {
-  const [code, setCode] = useState<string>("");
-  const [isLoading, setLoading] = useState<boolean>(false);
+//   const [code, ] = useState<string>("");
+//   const [, setLoading] = useState<boolean>(false);
   const history = useHistory();
   const classes = useStyles();
   const { search } = useLocation();
@@ -38,37 +38,37 @@ const ValidateEmail: React.FC = () => {
       }
     }
     validateToken();
-  }, []);
+  }, [history, key]);
 
-  const authUser = async () => {
-    if (code === "") {
-      alert("Code field is required!");
-      return;
-    }
-    setLoading(true);
-    try {
-      const response = await axios.post(`${baseUrl}/validate-email/`, {
-        key: code,
-      });
-      console.log(response.data);
-      setLoading(false);
-      //   if (!response.data.payload.error) {
-      //     console.log(response.data.payload.message);
-      //     setSentView(true);
-      //     // history.push("/login");
-      //   }
-    } catch (error: any) {
-      setLoading(false);
-      if (error.response.data.payload?.error) {
-        alert(error.response.data.payload.message);
-      }
-    }
-  };
+//   const authUser = async () => {
+//     if (code === "") {
+//       alert("Code field is required!");
+//       return;
+//     }
+//     setLoading(true);
+//     try {
+//       const response = await axios.post(`${baseUrl}/validate-email/`, {
+//         key: code,
+//       });
+//       console.log(response.data);
+//       setLoading(false);
+//       //   if (!response.data.payload.error) {
+//       //     console.log(response.data.payload.message);
+//       //     setSentView(true);
+//       //     // history.push("/login");
+//       //   }
+//     } catch (error: any) {
+//       setLoading(false);
+//       if (error.response.data.payload?.error) {
+//         alert(error.response.data.payload.message);
+//       }
+//     }
+//   };
 
-  const handleChangeEmail = (text: React.ChangeEvent<HTMLInputElement>) => {
-    const email = text.currentTarget.value;
-    setCode(email);
-  };
+//   const handleChangeEmail = (text: React.ChangeEvent<HTMLInputElement>) => {
+//     const email = text.currentTarget.value;
+//     setCode(email);
+//   };
 
   return (
     <React.Fragment>

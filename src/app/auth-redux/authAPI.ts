@@ -7,18 +7,10 @@ axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
 export function getCookie(name: string) {
   var cookieValue = null;
-  console.log("here");
-
   if (document.cookie && document.cookie !== "") {
-    console.log("here 1");
     var cookies = document.cookie.split(";");
-    console.log("here 2");
     for (var i = 0; i < cookies.length; i++) {
-      console.log("here 3");
       var cookie = jQuery.trim(cookies[i]);
-      console.log({ cookie });
-      console.log({ name });
-
       if (cookie.substring(0, name.length + 1) === name + "=") {
         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
         console.log({ cookieValue });
@@ -29,14 +21,6 @@ export function getCookie(name: string) {
   }
   return cookieValue;
 }
-
-const uuidv4 = () => {
-  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
-    var r = (Math.random() * 16) | 0,
-      v = c === "x" ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
-  });
-};
 
 export async function loginUser(userObj: object) {
   try {

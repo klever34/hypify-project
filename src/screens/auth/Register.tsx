@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import backgroundImageHorizontal from "../../assets/images/bg_landscape.png";
 import backgroundImageVertical from "../../assets/images/bg_portrait.png";
 import Footer from "../../components/footer/Footer";
 import { Box, Typography, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import {
-  registerAsync,
-  selectStateValues,
-} from "../../app/auth-redux/authSlice";
+// import { useAppSelector, useAppDispatch } from "../../app/hooks";
+// import {
+//   registerAsync,
+//   selectStateValues,
+// } from "../../app/auth-redux/authSlice";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
@@ -17,8 +17,8 @@ import { baseUrl } from "../../constants";
 import { Alert } from "@material-ui/lab";
 
 const Register: React.FC = () => {
-  const auth = useAppSelector(selectStateValues);
-  const dispatch = useAppDispatch();
+  // const auth = useAppSelector(selectStateValues);
+  // const dispatch = useAppDispatch();
   const classes = useStyles();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -41,7 +41,7 @@ const Register: React.FC = () => {
       }
     }
     checkAuth();
-  }, []);
+  }, [history]);
 
   const handleChangeEmail = (text: React.ChangeEvent<HTMLInputElement>) => {
     const email = text.currentTarget.value;
