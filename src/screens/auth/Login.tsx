@@ -22,6 +22,7 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [message, setErrorMessage] = useState<string>("");
   const [loading, showLoading] = useState<boolean>(false);
+  const [errors,  setErrors] = useState();
 
   useEffect(() => {
     async function checkAuth() {
@@ -72,6 +73,7 @@ const Login: React.FC = () => {
     } catch (error: any) {
       showLoading(false);
       console.log(error.response.data);
+      setErrorMessage(error.response.data.message)
     }
   };
 

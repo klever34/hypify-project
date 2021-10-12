@@ -27,6 +27,7 @@ const ValidateEmail: React.FC = () => {
         const response = await axios.post(`${baseUrl}auth/validate-email/`, {
           key,
         });
+        console.log(response.data)
         if (response.data.status === 200) {
           setAlert(true);
           setTimeout(() => {
