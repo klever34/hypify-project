@@ -22,8 +22,8 @@ import { Link } from "react-router-dom";
 const LandingPage: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [openClockOutModal, setOpenClockOutModal] = useState(false);
-  const handleOpenClockInModal = () => setOpen(true);
-  const handleOpenClockOutModal = () => setOpenClockOutModal(true);
+  // const handleOpenClockInModal = () => setOpen(true);
+  // const handleOpenClockOutModal = () => setOpenClockOutModal(true);
   return (
     <React.Fragment>
       <CssBaseline />

@@ -19,35 +19,35 @@ export async function clockinUserHomepage(
     let body = { email, location };
     const response = await axios.post(`${baseUrl}clockin/homepage`, body);
     return response;
-  } catch (error) {
+  } catch (error: any) {
     return error.response;
   }
 }
 
 export async function clockinUserDashboard(
-  location:{
-    lat:number,   
-    long:number
+  location: {
+    lat: number;
+    long: number;
   },
-  type:string,
-  token:string,
-  openCi?:boolean
+  type: string,
+  token: string,
+  openCi?: boolean
 ): Promise<any> {
   try {
-    const clock = openCi ? 'clockin' : 'clockout'
+    const clock = openCi ? "clockin" : "clockout";
 
     let body = {
-      location
+      location,
     };
 
-    const response = await axios.post(`${baseUrl}${clock}`, body, {headers:{
-      "Content-Type": type,
-       Authorization: token,
-    }} );
+    const response = await axios.post(`${baseUrl}${clock}`, body, {
+      headers: {
+        "Content-Type": type,
+        Authorization: token,
+      },
+    });
     return response;
-  } catch (error) {
+  } catch (error: any) {
     return error.response;
   }
 }
-
-

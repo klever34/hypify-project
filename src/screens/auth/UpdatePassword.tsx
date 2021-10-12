@@ -1,21 +1,21 @@
 import React, { useState } from "react";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { makeStyles} from "@material-ui/core/styles";
 import backgroundImageHorizontal from "../../assets/images/bg_landscape.png";
 import backgroundImageVertical from "../../assets/images/bg_portrait.png";
 import Footer from "../../components/footer/Footer";
-import { Checkbox, Box, Typography, Button } from "@material-ui/core";
+import {Box, Typography, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { baseUrl } from "../../constants";
-import { useHistory, useLocation } from "react-router-dom";
+import {useLocation } from "react-router-dom";
 import queryString from "query-string";
 
 const UpdatePassword: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [cpassword, setCPassword] = useState<string>("");
   const [isLoading, setLoading] = useState<boolean>(false);
-  const history = useHistory();
+  // const history = useHistory();
   const { search } = useLocation();
   const { token, email } = queryString.parse(search);
   const classes = useStyles();
@@ -39,7 +39,7 @@ const UpdatePassword: React.FC = () => {
         console.log(response.data.payload.message);
         setSentView(true);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
       setLoading(false);
       if (error.response.data.payload?.error) {

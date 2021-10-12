@@ -14,7 +14,7 @@ export async function clockoutUserHomepage(
     let body = { email, location };
     const response = await axios.post(`${baseUrl}clockout/homepage`, body);
     return response;
-  } catch (error) {
+  } catch (error: any) {
     return error.response;
   }
 }

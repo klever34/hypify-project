@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
@@ -8,12 +8,12 @@ import { Link } from "react-router-dom";
 import { ModalProps } from "../../models/modals";
 
 const NavOverlay: React.FC<ModalProps> = (props) => {
-  const [open, setOpen] = React.useState(false);
+  const [, setOpen] = React.useState(false);
   const classes = useStyles();
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  // const handleOpen = () => {
+  //   setOpen(true);
+  // };
 
   const handleClose = () => {
     setOpen(false);
@@ -45,7 +45,7 @@ const NavOverlay: React.FC<ModalProps> = (props) => {
         <Box className={classes.boxText}>Dashboard</Box>
       </Link>
       <Link
-        to={"/activity"}
+        to={""}
         style={{ textDecoration: "none", marginTop: 40, marginBottom: 40 }}
       >
         <Box className={classes.boxText}>Activities</Box>
