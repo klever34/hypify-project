@@ -76,8 +76,13 @@ const Register: React.FC = () => {
   };
 
   const registerUser = async () => {
+    setMsg(false);
     if (password !== confirmPassword) {
       alert("Passwords do not match");
+      return;
+    }
+    if(password.length < 8 || confirmPassword.length < 8){
+      alert('Passwords should be 8 characters or more')
       return;
     }
     showLoading(true);
@@ -144,15 +149,15 @@ const Register: React.FC = () => {
             </Typography>
             {showMsg && (
               <div className={classes.lastRow}>
-                <span className={classes.lastRowTextBlack}>
+                <p className={classes.lastRowTextBlack}>
                   Kindly check your email to verify your account
-                </span>
-                <span
+                </p>
+                <p
                   onClick={() => resendVerification()}
                   className={classes.lastRowTextBlack}
                 >
-                  Resend?
-                </span>
+                  Resend Email?
+                </p>
               </div>
             )}
             {showAlert && (
@@ -271,6 +276,8 @@ const useStyles = makeStyles((theme) => ({
   lastRowTextBlack: {
     color: "#160547",
     fontWeight: 600,
+    marginTop: 20,
+    marginBottom: 20,
   },
   container: {
     backgroundImage: `url(${backgroundImageHorizontal})`,
@@ -349,6 +356,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
+      padding: 10
     },
     formContainer: {
       backgroundColor: "#fff",
