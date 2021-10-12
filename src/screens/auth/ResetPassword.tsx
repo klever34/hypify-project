@@ -1,24 +1,24 @@
 import React, { useState } from "react";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import backgroundImageHorizontal from "../../assets/images/bg_landscape.png";
 import backgroundImageVertical from "../../assets/images/bg_portrait.png";
 import Footer from "../../components/footer/Footer";
-import { Checkbox, Box, Typography, Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Box, Typography, Button } from "@material-ui/core";
+// import { Link } from "react-router-dom";
 import axios from "axios";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { baseUrl } from "../../constants";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 const ResetPassword: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [isLoading, setLoading] = useState<boolean>(false);
-  const history = useHistory();
+  // const history = useHistory();
   const classes = useStyles();
   const [showSentView, setSentView] = useState<boolean>(false);
 
   const authUser = async () => {
-    if (email == "") {
+    if (email === "") {
       alert("Email field is required!");
       return;
     }
@@ -34,7 +34,7 @@ const ResetPassword: React.FC = () => {
         setSentView(true);
         // history.push("/login");
       }
-    } catch (error) {
+    } catch (error: any) {
       setLoading(false);
       if (error.response.data.payload?.error) {
         alert(error.response.data.payload.message);
