@@ -10,6 +10,8 @@ import { loginAsync, selectStateValues } from "../../app/auth-redux/authSlice";
 import { getUserActivitiesAsync } from "../../app/activity-redux/activitySlice";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { useHistory } from "react-router-dom";
+import { baseUrl } from "../../constants";
+import axios from "axios";
 
 const Login: React.FC = () => {
   const auth = useAppSelector(selectStateValues);
@@ -19,16 +21,17 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [message, setErrorMessage] = useState<string>("");
+  const [loading, showLoading] = useState<boolean>(false);
 
   useEffect(() => {
     async function checkAuth() {
-      const userStatus = localStorage.getItem("user-token");
+      const userStatus = localStorage.getItem("access-token");
       if (userStatus) {
         history.push("/dashboard");
       }
     }
     checkAuth();
-  }, []);
+  }, [history]);
 
   const handleChangeEmail = (text: React.ChangeEvent<HTMLInputElement>) => {
     const email = text.currentTarget.value;
@@ -41,14 +44,34 @@ const Login: React.FC = () => {
   };
 
   const loginUser = async () => {
-    const result = await dispatch(loginAsync({ email, password }));
-    console.log("result");
-    console.log(result);
-    if (result.payload.payload.auth) {
-      history.push("/dashboard");
-      dispatch(getUserActivitiesAsync());
-    } else {
-      setErrorMessage("Failed Authentication");
+    // const result = await dispatch(loginAsync({ email, password }));
+    // console.log("result");
+    // console.log(result);
+    // if (result.payload.payload.auth) {
+    //   history.push("/dashboard");
+    //   dispatch(getUserActivitiesAsync());
+    // } else {
+    //   setErrorMessage("Failed Authentication");
+    // }
+    try {
+      showLoading(true);
+      const response = await axios.post(`${baseUrl}auth/login/`, {
+        email,
+        password,
+      });
+      if(response.status === 200){
+        console.log(response);
+        localStorage.setItem('access-token', response.data.data.tokens.access)
+        localStorage.setItem('refresh-token', response.data.data.tokens.refresh)
+        history.push("/profile");
+      }
+      else{
+        setErrorMessage("Failed Authentication");
+      }
+      showLoading(false);
+    } catch (error: any) {
+      showLoading(false);
+      console.log(error.response.data);
     }
   };
 
@@ -100,7 +123,7 @@ const Login: React.FC = () => {
                 </Link>
               </div>
             </div>
-            {auth.status === "idle" && (
+            {!loading && (
               <Button
                 variant="contained"
                 color="primary"
@@ -111,7 +134,7 @@ const Login: React.FC = () => {
                 Sign In
               </Button>
             )}
-            {auth.status === "loading" && (
+            {loading && (
               <CircularProgress
                 className={classes.progressBar}
                 color="primary"

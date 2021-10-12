@@ -31,9 +31,8 @@ const Header: React.FC = () => {
   };
 
   const logoutBotton = (): any => {
-    // localStorage.removeItem('user-token')
     localStorage.clear();
-    history.push("/");
+    history.push('/login')
   };
 
   const classes = useStyles();
@@ -66,14 +65,14 @@ const Header: React.FC = () => {
               ) : null}
             </Link>
           </Typography>
-          <Typography variant="h3" className={classes.menuBox}>
+          {/* <Typography variant="h3" className={classes.menuBox}>
             <Link to={"/activity"} style={{ textDecoration: "none" }}>
               <Box className={classes.navText}>Activities</Box>
               {location == "activity" ? (
                 <div className={classes.smallDot}></div>
               ) : null}
             </Link>
-          </Typography>
+          </Typography> */}
         </div>
         <div style={{ display: "flex", alignItems: "center" }}>
           <div className={classes.avatar} style={{ marginRight: "10px" }}></div>

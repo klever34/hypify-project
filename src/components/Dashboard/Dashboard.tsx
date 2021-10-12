@@ -38,26 +38,25 @@ const {userData} = useAppSelector(selectStateValues)
             <img src={background} className={classes.bkimage} alt="circular"/>
             <Header />
             <Typography variant="h3" className={classes.handler}>
-                <Typography className={classes.name}>Welcome back, {userData.firstname}</Typography>
-                <Box className={classes.buttons}>
-                    <ClockInModal openCi={openCi} setOpenCi={setOpenCi} openCo={openCo} setOpenCo={setOpenCo} name={`${userData.firstname} ${userData.lastname}`}/>
+                <Typography className={classes.name}>Welcome back, {userData.first_name}</Typography>
+                {/* <Box className={classes.buttons}>
+                    <ClockInModal openCi={openCi} setOpenCi={setOpenCi} openCo={openCo} setOpenCo={setOpenCo} name={`${userData.first_name} ${userData.last_name}`}/>
                     <Button onClick={()=>showModal('clockIn')} className={classes.check} style={{backgroundColor:'#02C12C'}} variant="contained" color="secondary">
                         Clock in
                     </Button> 
                     <Button onClick={()=>showModal('clockOut')}   className={classes.check} style={{backgroundColor:'#C5C1D1',marginLeft:'10px'}} variant="contained" color="secondary">
                         Clock out
                     </Button> 
-                </Box>     
+                </Box>      */}
             </Typography>
             <div style={{marginTop:'5rem'}} >
-               <LineCharting instance="Stats/Opening Hours" timing1="Punctual" timing2="Late" update={update}/>
+               <LineCharting instance="Coins Activities" timing1="Gain" timing2="Loss" update={update}/>
             </div>
             {/* <Box component="span" className={classes.hours}>
                 <h3 className={classes.text} style={{color:"#5019EE"}}>Punctual days</h3>
                 <h3 className={classes.text}  style={{color:"#5019EE"}}>Late Days</h3>
             </Box> */}
-            <DoughtnutContainer update={update}/>
-            <ChartContainer instance="Stats/Closing Hours" timing1="Close Early" timing2="Close Normal/late" update={update}/>
+            <ChartContainer instance="Dollars Activities" timing1="Wins" timing2="Failed" update={update}/>
                 {/* <div style={{marginTop:'3rem'}}>
                     <LineCharting instance="Stats/Closing Hours" timing1="close Early" timing2="close Normal/late"/>
                 </div> */}

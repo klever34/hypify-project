@@ -11,12 +11,13 @@ import {
   selectStateValues,
 } from "../../app/auth-redux/authSlice";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { baseUrl } from "../../constants";
 import { Alert } from "@material-ui/lab";
+import { useHistory, useLocation } from "react-router-dom";
+import queryString from "query-string";
 
-const Register: React.FC = () => {
+const Invite: React.FC = () => {
   const auth = useAppSelector(selectStateValues);
   const dispatch = useAppDispatch();
   const classes = useStyles();
@@ -32,6 +33,8 @@ const Register: React.FC = () => {
   const [showAlert, setAlert] = useState<boolean>(false);
   const [loading, showLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState([]);
+  const { search } = useLocation();
+  const { key } = queryString.parse(search);
 
   useEffect(() => {
     async function checkAuth() {
@@ -83,49 +86,32 @@ const Register: React.FC = () => {
     showLoading(true);
 
     try {
-      const response = await axios.post(`${baseUrl}auth/register/`, {
-        email,
+      const response = await axios.post(`${baseUrl}invitation/accept/`, {
+        key,
         password,
         first_name: firstName,
         last_name: lastName,
         phone_number: phone,
       });
-      if (response.status === 201) {
+      if (response.status === 200) {
         setMsg(true);
-        setEmail("");
         setPassword("");
         setPhone("");
         setFirstName("");
         setLastName("");
-        setConfirmPassword("");
+        setTimeout(() => {
+            history.push('/login');
+        }, 1000)
       } else {
         setErrorMessage("Failed Registration");
       }
       showLoading(false);
     } catch (error: any) {
-      console.log(error.response.data.errors);
+    //   console.log(error.response.data.errors);
       if (error.response.data.errors.length > 0) {
         setErrors(error.response.data.errors);
       }
       showLoading(false);
-    }
-  };
-
-  const resendVerification = async () => {
-    try {
-      const response = await axios.post(
-        `${baseUrl}auth/resend-verification-email/`,
-        {
-          email,
-        }
-      );
-      if (response.status === 200) {
-        setAlert(true);
-      } else {
-        setErrorMessage("Failed to Send");
-      }
-    } catch (error: any) {
-      console.log(error.response.data);
     }
   };
 
@@ -143,20 +129,7 @@ const Register: React.FC = () => {
               <Box color="primary.light">Register</Box>
             </Typography>
             {showMsg && (
-              <div className={classes.lastRow}>
-                <span className={classes.lastRowTextBlack}>
-                  Kindly check your email to verify your account
-                </span>
-                <span
-                  onClick={() => resendVerification()}
-                  className={classes.lastRowTextBlack}
-                >
-                  Resend?
-                </span>
-              </div>
-            )}
-            {showAlert && (
-              <Alert severity="success">Email sent Successfully</Alert>
+              <Alert severity="success">Your account setup is successful</Alert>
             )}
             {errors.length > 0 &&
               errors.map((item: any, i) => (
@@ -172,7 +145,6 @@ const Register: React.FC = () => {
                 name="first_name"
                 placeholder="First Name"
                 onChange={(text) => handleChangeName(text, "first")}
-                value={firstName}
               />
               <input
                 className={classes.formInput}
@@ -180,15 +152,6 @@ const Register: React.FC = () => {
                 name="last_name"
                 placeholder="Last Name"
                 onChange={(text) => handleChangeName(text, "last")}
-                value={lastName}
-              />
-              <input
-                className={classes.formInput}
-                type="email"
-                name="email"
-                placeholder="Email"
-                onChange={(text) => handleChangeEmail(text)}
-                value={email}
               />
               <input
                 className={classes.formInput}
@@ -196,7 +159,6 @@ const Register: React.FC = () => {
                 name="phone"
                 placeholder="Phone Number"
                 onChange={(text) => handleChangePhone(text)}
-                value={phone}
               />
               <input
                 className={classes.formInput}
@@ -204,7 +166,6 @@ const Register: React.FC = () => {
                 name="password"
                 placeholder="Password"
                 onChange={(text) => handleChangePassword(text)}
-                value={password}
               />
               <input
                 className={classes.formInput}
@@ -212,7 +173,6 @@ const Register: React.FC = () => {
                 name="confirm_password"
                 placeholder="Re-type Password"
                 onChange={(text) => handleChangeCP(text)}
-                value={confirmPassword}
               />
             </div>
 
@@ -404,4 +364,4 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default Register;
+export default Invite;

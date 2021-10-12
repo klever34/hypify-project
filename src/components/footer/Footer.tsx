@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
         >
           {"Copyright © "}
           <Link color="inherit" href="#!">
-            Fpg Technologies and Solution, All rights reserved
+            Hypify Technologies, All rights reserved
           </Link>{" "}
           {new Date().getFullYear()}
           {"."}

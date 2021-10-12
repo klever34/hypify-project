@@ -13,6 +13,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { useAppSelector } from "./app/hooks";
 import { selectStateValues } from "./app/auth-redux/authSlice";
 import UpdatePassword from "./screens/auth/UpdatePassword";
+import ValidateEmail from "./screens/auth/ValidateEmail";
+import Invite from "./screens/auth/Invite";
 
 const theme = createMuiTheme({
   palette: {
@@ -52,7 +54,11 @@ function App() {
           <Route path="/register" component={Register} />
           <Route path="/reset-password" component={ResetPassword} />
           <Route path="/update-password" component={UpdatePassword} />
-          <ProtectedRoute
+          <Route path="/account/verify" component={ValidateEmail} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/invitation" component={Invite} />
+          {/* <ProtectedRoute
             exact
             path="/profile"
             isAuthenticated={auth.isAuthenticated}
@@ -72,7 +78,7 @@ function App() {
             isAuthenticated={auth.isAuthenticated}
             component={Dashboard}
             authenticationPath={"/login"}
-          />
+          /> */}
         </Switch>
       </ThemeProvider>
     </Router>

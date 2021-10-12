@@ -11,8 +11,9 @@ export interface UserAuthState {
 export interface UserData {
   email?: string;
   password?: string;
-  firstname?: string;
-  lastname?: string;
+  first_name?: string;
+  last_name?: string;
+  phone_number?: string;
 }
 
 const userStorage = JSON.parse(
@@ -51,14 +52,14 @@ export const authSlice = createSlice({
         state.status = "loading";
       })
       .addCase(loginAsync.fulfilled, (state, action) => {
-        if (action.payload?.payload) {
-          state.userData = action.payload.payload.user;
-          localStorage.setItem("user-token", action.payload.payload.token);
-          localStorage.setItem(
-            "user",
-            JSON.stringify(action.payload.payload.user)
-          );
-        }
+        // if (action.payload?.payload) {
+        //   state.userData = action.payload.payload.user;
+        //   localStorage.setItem("user-token", action.payload.payload.token);
+        //   localStorage.setItem(
+        //     "user",
+        //     JSON.stringify(action.payload.payload.user)
+        //   );
+        // }
         state.isAuthenticated = true;
         state.status = "idle";
       })
@@ -66,17 +67,16 @@ export const authSlice = createSlice({
         state.status = "loading";
       })
       .addCase(registerAsync.fulfilled, (state, action) => {
-        if (action.payload?.payload) {
-          state.userData = action.payload.payload.user;
-          localStorage.setItem("user-token", action.payload.payload.token);
-          localStorage.setItem(
-            "user",
-            JSON.stringify(action.payload.payload.user)
-          );
-        }
-
-        state.isAuthenticated = true;
-        state.status = "idle";
+        // if (action.payload?.payload) {
+        //   state.userData = action.payload.payload.user;
+        //   localStorage.setItem("user-token", action.payload.payload.token);
+        //   localStorage.setItem(
+        //     "user",
+        //     JSON.stringify(action.payload.payload.user)
+        //   );
+        // }
+        // state.isAuthenticated = true;
+        // state.status = "idle";
       });
   },
 });

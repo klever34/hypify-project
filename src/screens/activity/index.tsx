@@ -109,7 +109,7 @@ export default function ActivityHistory() {
 
   const getExportFileName = () => {
     return `Reports-${
-      userData && userData.firstname + " " + userData.lastname
+      userData && userData.first_name + " " + userData.last_name
     }-${new Date().toDateString()}-export.csv`;
   };
 

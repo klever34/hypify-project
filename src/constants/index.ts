@@ -1,6 +1,6 @@
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from "constants";
 
-export const baseUrl = `http://127.0.0.1:5100/api/`;
+export const baseUrl = `https://smart-edge-backend-staging.herokuapp.com/`;
 
 const months = [
   "January",

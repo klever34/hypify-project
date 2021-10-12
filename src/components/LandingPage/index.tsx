@@ -79,17 +79,17 @@ const LandingPage: React.FC = () => {
                           lineHeight={1.4}
                           color="primary"
                         >
-                          Say{" "}
+                          Lorem{" "}
                           <Box component="span" color="primary.light">
-                            Goodbye
+                            Ipsum
                           </Box>
                           <br />
-                          to the{" "}
+                          dolor sit{" "}
                           <Box component="span" color="primary.light">
-                            traditional
+                            amet amet amet
                           </Box>
                           <br />
-                          attendance system.
+                          itaque illo eius recusandae, omnis ea est!
                         </Box>
                       </Typography>
 
@@ -99,12 +99,11 @@ const LandingPage: React.FC = () => {
                           color="textSecondary"
                           paragraph
                         >
-                          This platform is herewith a smarter solution to
-                          replace the paper based attendence at work
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, illum recusandae cumque veniam nemo repellendus v
                         </Typography>
                       </Box>
                     </Box>
-                    <Grid
+                    {/* <Grid
                       container
                       spacing={5}
                       direction="row"
@@ -118,7 +117,7 @@ const LandingPage: React.FC = () => {
                           color="secondary"
                           onClick={handleOpenClockInModal}
                         >
-                          Clock In
+                          Log In
                         </Button>
                       </Grid>
                       <Grid item container alignItems="center" xs={6} md={5}>
@@ -129,10 +128,10 @@ const LandingPage: React.FC = () => {
                           color="secondary"
                           onClick={handleOpenClockOutModal}
                         >
-                          Clock Out
+                          Log Out
                         </Button>
                       </Grid>
-                    </Grid>
+                    </Grid> */}
                   </div>
                 </Grid>
                 <Hidden smDown={true}>
@@ -218,7 +217,7 @@ const LandingPage: React.FC = () => {
                     color="primary"
                     gutterBottom
                   >
-                    Clock In/Clock Out
+                    Log In/Log Out
                   </Typography>
                   <Typography variant="subtitle1" color="textPrimary" paragraph>
                     Pick from one of our sms plans and pay directly online from
