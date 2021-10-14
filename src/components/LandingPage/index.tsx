@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -18,12 +18,25 @@ import Footer from "../../components/footer/Footer";
 import ClockInModal from "./ClockInModal";
 import ClockOutModal from "./ClockOutModal";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const LandingPage: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [openClockOutModal, setOpenClockOutModal] = useState(false);
   // const handleOpenClockInModal = () => setOpen(true);
   // const handleOpenClockOutModal = () => setOpenClockOutModal(true);
+  const history = useHistory();
+
+  useEffect(() => {
+    async function checkAuth() {
+      const userStatus = localStorage.getItem("access-token");
+      if (userStatus) {
+        history.push("/dashboard");
+      }
+    }
+    checkAuth();
+  }, [history]);
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -99,7 +112,9 @@ const LandingPage: React.FC = () => {
                           color="textSecondary"
                           paragraph
                         >
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, illum recusandae cumque veniam nemo repellendus v
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Numquam, illum recusandae cumque veniam nemo
+                          repellendus v
                         </Typography>
                       </Box>
                     </Box>
