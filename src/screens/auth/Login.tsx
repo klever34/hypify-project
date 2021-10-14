@@ -61,9 +61,14 @@ const Login: React.FC = () => {
         password,
       });
       if(response.status === 200){
-        console.log(response);
+        // console.log(response);
+        // return;
         localStorage.setItem('access-token', response.data.data.tokens.access)
         localStorage.setItem('refresh-token', response.data.data.tokens.refresh)
+        localStorage.setItem('user-email', response.data.data.basic_user_info.email)
+        localStorage.setItem('user-firstname', response.data.data.basic_user_info.first_name)
+        localStorage.setItem('user-lastname', response.data.data.basic_user_info.last_name)
+        localStorage.setItem('user-id', response.data.data.basic_user_info.user_id)
         history.push("/profile");
       }
       else{

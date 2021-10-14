@@ -77,6 +77,7 @@ const Register: React.FC = () => {
 
   const registerUser = async () => {
     setMsg(false);
+    setErrors([]);
     if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;

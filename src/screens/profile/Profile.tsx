@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
@@ -82,23 +82,37 @@ const ProfilePage: React.FC = () => {
   const [loading, showLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState([]);
   const [showMsg, setMsg] = useState<boolean>(false);
-
+  const [userEmail, setUserEmail] = useState("");
+  const [userName, setUserName] = useState("");
   // const { userData = false } = useAppSelector(selectStateValues);
   // const logout = () => {
   //   localStorage.clear();
   //   history.push("/login");
   // };
 
+  useEffect(() => {
+    async function getDetails() {
+      let email = await localStorage.getItem("user-email");
+      setUserEmail(email!);
+      let name =
+        (await localStorage.getItem("user-firstname")) +
+        " " +
+        (await localStorage.getItem("user-lastname"));
+      setUserName(name);
+    }
+    getDetails();
+  });
   const goToResetScreen = () => {
     history.push("/reset-password");
   };
 
   const logout = () => {
     localStorage.clear();
-    history.push('/login')
+    history.push("/login");
   };
 
   const sendInvite = async () => {
+    setErrors([]);
     const token = await localStorage.getItem("access-token");
     try {
       showLoading(true);
@@ -114,9 +128,10 @@ const ProfilePage: React.FC = () => {
         }
       );
       console.log(response.data);
-      
+
       if (response.status === 201) {
         setMsg(true);
+        setEmail("");
       } else {
         // setErrorMessage("Failed Authentication");
       }
@@ -187,7 +202,7 @@ const ProfilePage: React.FC = () => {
                   color="textSecondary"
                   paragraph
                 >
-                  John Doe
+                  {userName}
                 </Typography>
               </div>
             </Grid>
@@ -210,7 +225,7 @@ const ProfilePage: React.FC = () => {
                   color="textSecondary"
                   paragraph
                 >
-                  johndoe@user.com
+                  {userEmail}
                 </Typography>
               </div>
             </Grid>
@@ -222,7 +237,9 @@ const ProfilePage: React.FC = () => {
               </Alert>
             ))}
           {showMsg && (
-            <Alert severity="success">Invitation has been created successfully</Alert>
+            <Alert severity="success">
+              Invitation has been created successfully
+            </Alert>
           )}
           <Grid spacing={5} direction="row" justify="center">
             <div>
@@ -232,6 +249,7 @@ const ProfilePage: React.FC = () => {
                 name="email"
                 placeholder="Email"
                 onChange={(text) => handleChangeEmail(text)}
+                value={email}
               />
 
               {!loading && (

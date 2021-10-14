@@ -126,7 +126,7 @@ const Invite: React.FC = () => {
               align="center"
               className={classes.header}
             >
-              <Box color="primary.light">Register</Box>
+              <Box color="primary.light">Please Register to continue</Box>
             </Typography>
             {showMsg && (
               <Alert severity="success">Your account setup is successful</Alert>
