@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import backgroundImageHorizontal from "../../assets/images/bg_landscape.png";
-import backgroundImageVertical from "../../assets/images/bg_portrait.png";
 import Footer from "../../components/footer/Footer";
 import { Box, Typography, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
@@ -117,8 +115,42 @@ const Invite: React.FC = () => {
 
   return (
     <React.Fragment>
+      {/* <section
+        className="section_breadcrumb blue_light_bg"
+        data-z-index="1"
+        data-parallax="scroll"
+        data-image-src="assets/images/home_banner_bg.png"
+      >
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12 col-md-12 col-sm-12">
+              <div className="banner_text text-center">
+                <h1
+                  // className="animation"
+                  // data-animation="fadeInUp"
+                  // data-animation-delay="1.1s"
+                >
+                  Complete Setup
+                </h1>
+                <ul
+                  className="breadcrumb bg-transparent justify-content-center animation m-0 p-0"
+                  data-animation="fadeInUp"
+                  data-animation-delay="1.3s"
+                >
+                  <li>
+                    <Link to={"/"}>Home</Link>{" "}
+                  </li>
+                  <li>
+                    <span>Account Setup</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> */}
       <div className={classes.container}>
-        <div className={classes.formContainer}>
+        <div className="authorize_box">
           <form className="form" noValidate>
             <Typography
               variant="h4"
@@ -204,7 +236,7 @@ const Invite: React.FC = () => {
           </form>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </React.Fragment>
   );
 };
@@ -233,7 +265,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
   },
   container: {
-    backgroundImage: `url(${backgroundImageHorizontal})`,
+    // backgroundImage: `url(${backgroundImageHorizontal})`,
     height: "95vh",
     width: "100vw",
     backgroundPosition: "center",
@@ -256,6 +288,8 @@ const useStyles = makeStyles((theme) => ({
   formInputs: {
     marginBottom: "0.5rem",
     width: "100%",
+    borderColor: '#000000',
+    borderWidth: 2
   },
   header: {
     fontWeight: "bold",
@@ -303,7 +337,7 @@ const useStyles = makeStyles((theme) => ({
 
   "@media (max-width: 768px)": {
     container: {
-      backgroundImage: `url(${backgroundImageVertical})`,
+      // backgroundImage: `url(${backgroundImageVertical})`,
       height: "92vh",
       width: "100vw",
       backgroundPosition: "center",

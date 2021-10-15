@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import backgroundImageHorizontal from "../../assets/images/bg_landscape.png";
+// import backgroundImageHorizontal from "../../assets/images/bg_landscape.png";
 import backgroundImageVertical from "../../assets/images/bg_portrait.png";
 import Footer from "../../components/footer/Footer";
 import { Box, Typography } from "@material-ui/core";
@@ -11,6 +11,7 @@ import { baseUrl } from "../../constants";
 import queryString from "query-string";
 import { useHistory, useLocation } from "react-router-dom";
 import { Alert } from "@material-ui/lab";
+import { Link } from "react-router-dom";
 
 const ValidateEmail: React.FC = () => {
 //   const [code, ] = useState<string>("");
@@ -20,6 +21,9 @@ const ValidateEmail: React.FC = () => {
   const { search } = useLocation();
   const [showAlert, setAlert] = useState<boolean>(false);
   const { key } = queryString.parse(search);
+  const [errors, setErrors] = useState([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [message, setMsg] = useState<string>("");
 
   useEffect(() => {
     async function validateToken() {
@@ -36,6 +40,13 @@ const ValidateEmail: React.FC = () => {
         }
       } catch (error: any) {
         console.log(error.response);
+      if (error.response.data.error?.length > 0) {
+        setErrors(error.response.data.errors);
+      }
+      else{
+        setMsg(error.response.data.message)
+      }
+      setLoading(false);
       }
     }
     validateToken();
@@ -74,14 +85,25 @@ const ValidateEmail: React.FC = () => {
   return (
     <React.Fragment>
       <div className={classes.container}>
-        <div className={classes.formContainer}>
+        <div className="authorize_box">
           <form className="form" noValidate>
+                    {errors.length > 0 &&
+                      errors.map((item: any, i) => (
+                        <Alert key={i} severity="warning">
+                          {item.message}
+                        </Alert>
+                      ))}
             {showAlert && (
               <Alert severity="success">
                 Email Confirmed Successfully
               </Alert>
             )}
-            <CircularProgress className={classes.progressBar} color="primary" />
+            {message && (
+              <Alert severity="warning">
+                {message}
+              </Alert>
+            )}
+            {loading && <CircularProgress className={classes.progressBar} color="primary" />}
             <Typography
               variant="h4"
               color="primary"
@@ -93,7 +115,7 @@ const ValidateEmail: React.FC = () => {
           </form>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </React.Fragment>
   );
 };
@@ -104,6 +126,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "0 auto",
     marginTop: 50,
     marginBottom: 50,
+    color: 'blue'
   },
   lastRow: {
     display: "flex",
@@ -123,7 +146,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
   },
   container: {
-    backgroundImage: `url(${backgroundImageHorizontal})`,
+    // backgroundImage: `url(${backgroundImageHorizontal})`,
     height: "92vh",
     width: "100vw",
     backgroundPosition: "center",
@@ -197,7 +220,7 @@ const useStyles = makeStyles((theme) => ({
 
   "@media (max-width: 768px)": {
     container: {
-      backgroundImage: `url(${backgroundImageVertical})`,
+      // backgroundImage: `url(${backgroundImageVertical})`,
       height: "95vh",
       width: "100vw",
       backgroundPosition: "center",
