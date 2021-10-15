@@ -1,9 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
-import { makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import backgroundImageHorizontal from "../../assets/images/bg_landscape.png";
 import backgroundImageVertical from "../../assets/images/bg_portrait.png";
 import Footer from "../../components/footer/Footer";
-import { Checkbox, Box, Typography, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 // import { useAppSelector, useAppDispatch } from "../../app/hooks";
 // import {selectStateValues } from "../../app/auth-redux/authSlice";
@@ -20,7 +20,7 @@ const Login: React.FC = () => {
   const classes = useStyles();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [message, setErrorMessage] = useState<string>("");
+  const [, setErrorMessage] = useState<string>("");
   const [loading, showLoading] = useState<boolean>(false);
   // const [errors,  setErrors] = useState();
 
@@ -60,104 +60,178 @@ const Login: React.FC = () => {
         email,
         password,
       });
-      if(response.status === 200){
+      if (response.status === 200) {
         // console.log(response);
         // return;
-        localStorage.setItem('access-token', response.data.data.tokens.access)
-        localStorage.setItem('refresh-token', response.data.data.tokens.refresh)
-        localStorage.setItem('user-email', response.data.data.basic_user_info.email)
-        localStorage.setItem('user-firstname', response.data.data.basic_user_info.first_name)
-        localStorage.setItem('user-lastname', response.data.data.basic_user_info.last_name)
-        localStorage.setItem('user-id', response.data.data.basic_user_info.user_id)
+        localStorage.setItem("access-token", response.data.data.tokens.access);
+        localStorage.setItem(
+          "refresh-token",
+          response.data.data.tokens.refresh
+        );
+        localStorage.setItem(
+          "user-email",
+          response.data.data.basic_user_info.email
+        );
+        localStorage.setItem(
+          "user-firstname",
+          response.data.data.basic_user_info.first_name
+        );
+        localStorage.setItem(
+          "user-lastname",
+          response.data.data.basic_user_info.last_name
+        );
+        localStorage.setItem(
+          "user-id",
+          response.data.data.basic_user_info.user_id
+        );
         history.push("/profile");
-      }
-      else{
+      } else {
         setErrorMessage("Failed Authentication");
       }
       showLoading(false);
     } catch (error: any) {
       showLoading(false);
       console.log(error.response.data);
-      setErrorMessage(error.response.data.message)
+      setErrorMessage(error.response.data.message);
     }
   };
 
   return (
     <React.Fragment>
-      <div className={classes.container}>
-        <div className={classes.formContainer}>
-          <form className="form" noValidate>
-            <Typography
-              variant="h4"
-              color="primary"
-              align="center"
-              className={classes.header}
-            >
-              <Box color="primary.light">Login</Box>
-            </Typography>
-            <div className={classes.errorMsg}>
-              <p>{message}</p>
-            </div>
-            <div className={classes.formInputs}>
-              <input
-                className={classes.formInput}
-                type="email"
-                name="email"
-                placeholder="Email"
-                onChange={(text) => handleChangeEmail(text)}
-              />
-              <input
-                className={classes.formInput}
-                type="password"
-                name="password"
-                placeholder="Password"
-                onChange={(text) => handleChangePassword(text)}
-              />
-            </div>
-            <div className={classes.btmRow}>
-              <div>
-                <Checkbox
-                  value="checkedA"
-                  inputProps={{ "aria-label": "Checkbox A" }}
-                />
-                <span className={classes.formInputSpan}>Remember me?</span>
-              </div>
-              <div className={classes.topPad}>
-                <Link to={"/reset-password"} style={{ textDecoration: "none" }}>
-                  <span className={classes.formInputSpan}>
-                    Forgot Password?
-                  </span>
-                </Link>
+      <section
+        className="section_breadcrumb blue_light_bg"
+        data-z-index="1"
+        data-parallax="scroll"
+        data-image-src="assets/images/home_banner_bg.png"
+      >
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12 col-md-12 col-sm-12">
+              <div className="banner_text text-center">
+                <h1
+                  // className="animation"
+                  // data-animation="fadeInUp"
+                  // data-animation-delay="1.1s"
+                >
+                  Login
+                </h1>
+                <ul
+                  className="breadcrumb bg-transparent justify-content-center animation m-0 p-0"
+                  data-animation="fadeInUp"
+                  data-animation-delay="1.3s"
+                >
+                  <li>
+                    <Link to={"/"}>Home</Link>{" "}
+                  </li>
+                  <li>
+                    <span>Login</span>
+                  </li>
+                </ul>
               </div>
             </div>
-            {!loading && (
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.authBtn}
-                size={"large"}
-                onClick={loginUser}
-              >
-                Sign In
-              </Button>
-            )}
-            {loading && (
-              <CircularProgress
-                className={classes.progressBar}
-                color="primary"
-              />
-            )}
-            <div className={classes.lastRow}>
-              <span className={classes.lastRowTextBlack}>
-                Already have an account?
-              </span>
-              <Link to={"/register"} style={{ textDecoration: "none" }}>
-                <span className={classes.lastRowTextColor}>REGISTER?</span>
-              </Link>
-            </div>
-          </form>
+          </div>
         </div>
-      </div>
+      </section>
+      <section>
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="authorize_box">
+                <div className="title_default_dark title_border text-center">
+                  <h4
+                    // className="animation"
+                    // data-animation="fadeInUp"
+                    // data-animation-delay="0.2s"
+                  >
+                    Welcome
+                  </h4>
+                  <p
+                    // className="animation"
+                    // data-animation="fadeInUp"
+                    // data-animation-delay="0.4s"
+                  >
+                    Sign in to your account
+                  </p>
+                </div>
+                <div className="field_form authorize_form">
+                  <form method="post">
+                    <div
+                      className="form-group col-md-12"
+                      // data-animation="fadeInUp"
+                      // data-animation-delay="0.6s"
+                    >
+                      <input
+                        type="text"
+                        className="form-control"
+                        required
+                        placeholder="Email"
+                        name="email"
+                        onChange={(text) => handleChangeEmail(text)}
+                      />
+                    </div>
+                    <div
+                      className="form-group col-md-12"
+                      // data-animation="fadeInUp"
+                      // data-animation-delay="0.7s"
+                    >
+                      <input
+                        type="password"
+                        className="form-control"
+                        required
+                        placeholder="Password"
+                        name="password"
+                        onChange={(text) => handleChangePassword(text)}
+                      />
+                    </div>
+                    {!loading && (
+                      <div
+                        className="form-group col-md-12 text-center"
+                        // data-animation="fadeInUp"
+                        // data-animation-delay="0.8s"
+                      >
+                        <button
+                          className="btn btn-default btn-radius"
+                          name="submit"
+                          type="submit"
+                          onClick={loginUser}
+                        >
+                          Login
+                        </button>
+                      </div>
+                    )}
+                    {loading && (
+                      <CircularProgress
+                        className={classes.progressBar}
+                        color="primary"
+                      />
+                    )}
+
+                    <div
+                      className="form-group col-md-12 text-center"
+                      // data-animation="fadeInUp"
+                      // data-animation-delay="0.9s"
+                    >
+                      <a className="forgot_pass" href="#">
+                        Forgot Password?
+                      </a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div className="divider small_divider"></div>
+              <div className="text-center">
+                <span
+                  // className="animation"
+                  // data-animation="fadeInUp"
+                  // data-animation-delay="1s"
+                >
+                  New here?<Link to={"/register"}> Register</Link>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <Footer />
     </React.Fragment>
   );

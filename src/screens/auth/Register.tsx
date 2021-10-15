@@ -1,9 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import backgroundImageHorizontal from "../../assets/images/bg_landscape.png";
 import backgroundImageVertical from "../../assets/images/bg_portrait.png";
 import Footer from "../../components/footer/Footer";
-import { Box, Typography, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 // import { useAppSelector, useAppDispatch } from "../../app/hooks";
 // import {
@@ -82,8 +82,8 @@ const Register: React.FC = () => {
       alert("Passwords do not match");
       return;
     }
-    if(password.length < 8 || confirmPassword.length < 8){
-      alert('Passwords should be 8 characters or more')
+    if (password.length < 8 || confirmPassword.length < 8) {
+      alert("Passwords should be 8 characters or more");
       return;
     }
     showLoading(true);
@@ -137,119 +137,249 @@ const Register: React.FC = () => {
 
   return (
     <React.Fragment>
-      <div className={classes.container}>
-        <div className={classes.formContainer}>
-          <form className="form" noValidate>
-            <Typography
-              variant="h4"
-              color="primary"
-              align="center"
-              className={classes.header}
-            >
-              <Box color="primary.light">Register</Box>
-            </Typography>
-            {showMsg && (
-              <div className={classes.lastRow}>
-                <p className={classes.lastRowTextBlack}>
-                  Kindly check your email to verify your account
-                </p>
-                <p
-                  onClick={() => resendVerification()}
-                  className={classes.lastRowTextBlack}
+      <section
+        className="section_breadcrumb blue_light_bg"
+        data-z-index="1"
+        data-parallax="scroll"
+        data-image-src="assets/images/home_banner_bg.png"
+      >
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12 col-md-12 col-sm-12">
+              <div className="banner_text text-center">
+                <h1
+                  // className="animation"
+                  // data-animation="fadeInUp"
+                  // data-animation-delay="1.1s"
                 >
-                  Resend Email?
-                </p>
+                  Register
+                </h1>
+                <ul
+                  className="breadcrumb bg-transparent justify-content-center m-0 p-0"
+                  // data-animation="fadeInUp"
+                  // data-animation-delay="1.3s"
+                >
+                  <li>
+                    <Link to={"/"}>Home</Link>{" "}
+                  </li>
+                  <li>
+                    <span>Sign Up</span>
+                  </li>
+                </ul>
               </div>
-            )}
-            {showAlert && (
-              <Alert severity="success">Email sent Successfully</Alert>
-            )}
-            {errors.length > 0 &&
-              errors.map((item: any, i) => (
-                <Alert key={i} severity="warning">{item.message}</Alert>
-              ))}
-            <div className={classes.errorMsg}>
-              <p>{message}</p>
             </div>
-            <div className={classes.formInputs}>
-              <input
-                className={classes.formInput}
-                type="text"
-                name="first_name"
-                placeholder="First Name"
-                onChange={(text) => handleChangeName(text, "first")}
-                value={firstName}
-              />
-              <input
-                className={classes.formInput}
-                type="text"
-                name="last_name"
-                placeholder="Last Name"
-                onChange={(text) => handleChangeName(text, "last")}
-                value={lastName}
-              />
-              <input
-                className={classes.formInput}
-                type="email"
-                name="email"
-                placeholder="Email"
-                onChange={(text) => handleChangeEmail(text)}
-                value={email}
-              />
-              <input
-                className={classes.formInput}
-                type="text"
-                name="phone"
-                placeholder="Phone Number"
-                onChange={(text) => handleChangePhone(text)}
-                value={phone}
-              />
-              <input
-                className={classes.formInput}
-                type="password"
-                name="password"
-                placeholder="Password"
-                onChange={(text) => handleChangePassword(text)}
-                value={password}
-              />
-              <input
-                className={classes.formInput}
-                type="password"
-                name="confirm_password"
-                placeholder="Re-type Password"
-                onChange={(text) => handleChangeCP(text)}
-                value={confirmPassword}
-              />
-            </div>
-
-            {!loading && (
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.authBtn}
-                size={"large"}
-                onClick={registerUser}
-              >
-                Register
-              </Button>
-            )}
-            {loading && (
-              <CircularProgress
-                className={classes.progressBar}
-                color="primary"
-              />
-            )}
-            <div className={classes.lastRow}>
-              <span className={classes.lastRowTextBlack}>
-                Already have an account?
-              </span>
-              <Link to={"/login"} style={{ textDecoration: "none" }}>
-                <span className={classes.lastRowTextColor}>LOGIN?</span>
-              </Link>
-            </div>
-          </form>
+          </div>
         </div>
-      </div>
+      </section>
+      <section>
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="authorize_box">
+                <div className="title_default_dark title_border text-center">
+                  <h4
+                    className="animation"
+                    data-animation="fadeInUp"
+                    data-animation-delay="0.2s"
+                  >
+                    GET STARTED WITH SMARTEDGE
+                  </h4>
+                  <p
+                    // className="animation"
+                    // data-animation="fadeInUp"
+                    // data-animation-delay="0.4s"
+                  >
+                    Create your account
+                  </p>
+                </div>
+                <div className="field_form authorize_form">
+                  <form method="post">
+                    {showMsg && (
+                      <div className={classes.lastRow}>
+                        <p className={classes.lastRowTextBlack}>
+                          Kindly check your email to verify your account
+                        </p>
+                        <p
+                          onClick={() => resendVerification()}
+                          className={classes.lastRowTextBlack}
+                        >
+                          Resend Email?
+                        </p>
+                      </div>
+                    )}
+                    {showAlert && (
+                      <Alert severity="success">Email sent Successfully</Alert>
+                    )}
+                    {errors.length > 0 &&
+                      errors.map((item: any, i) => (
+                        <Alert key={i} severity="warning">
+                          {item.message}
+                        </Alert>
+                      ))}
+                    <div className={classes.errorMsg}>
+                      <p>{message}</p>
+                    </div>
+                    {/* <div
+                      className="form-group col-md-12 animation"
+                      data-animation="fadeInUp"
+                      data-animation-delay="0.5s"
+                    >
+                      <input
+                        type="text"
+                        id="crypto_id"
+                        required
+                        className="form-control"
+                        placeholder="Crypto id"
+                        name="crypto_id"
+                      />
+                    </div> */}
+
+                    <div
+                      className="form-group col-md-12"
+                      // data-animation="fadeInUp"
+                      // data-animation-delay="0.5s"
+                    >
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="first_name"
+                        placeholder="First Name"
+                        onChange={(text) => handleChangeName(text, "first")}
+                        value={firstName}
+                      />
+                    </div>
+
+                    <div
+                      className="form-group col-md-12"
+                      // data-animation="fadeInUp"
+                      // data-animation-delay="0.5s"
+                    >
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="last_name"
+                        placeholder="Last Name"
+                        onChange={(text) => handleChangeName(text, "last")}
+                        value={lastName}
+                      />
+                    </div>
+
+                    <div
+                      className="form-group col-md-12"
+                      // data-animation="fadeInUp"
+                      // data-animation-delay="0.5s"
+                    >
+                      <input
+                        type="text"
+                        className="form-control"
+                        required
+                        name="email"
+                        placeholder="Email"
+                        onChange={(text) => handleChangeEmail(text)}
+                        value={email}
+                      />
+                    </div>
+                    <div
+                      className="form-group col-md-12"
+                      // data-animation="fadeInUp"
+                      // data-animation-delay="0.6s"
+                    >
+                      <input
+                        type="email"
+                        className="form-control"
+                        required
+                        name="phone"
+                        placeholder="Phone Number"
+                        onChange={(text) => handleChangePhone(text)}
+                        value={phone}
+                      />
+                    </div>
+                    <div
+                      className="form-group col-md-12"
+                      // data-animation="fadeInUp"
+                      // data-animation-delay="0.7s"
+                    >
+                      <input
+                        type="password"
+                        className="form-control"
+                        required
+                        name="password"
+                        placeholder="Password"
+                        onChange={(text) => handleChangePassword(text)}
+                        value={password}
+                      />
+                    </div>
+                    <div
+                      className="form-group col-md-12"
+                      // data-animation="fadeInUp"
+                      // data-animation-delay="0.8s"
+                    >
+                      <input
+                        type="password"
+                        className="form-control"
+                        required
+                        name="confirm_password"
+                        placeholder="Re-type Password"
+                        onChange={(text) => handleChangeCP(text)}
+                        value={confirmPassword}
+                      />
+                    </div>
+                    <div
+                      className="form-group col-md-12"
+                      // data-animation="fadeInUp"
+                      // data-animation-delay="0.9s"
+                    >
+                      <div className="checkbox_field d-inline">
+                        <input
+                          type="checkbox"
+                          name="rememberme"
+                          id="rememberme"
+                          value="rememberme"
+                        />
+                        <label>
+                          I agree with <a href="#">Terms of Services</a>
+                        </label>
+                      </div>
+                    </div>
+                    {!loading && (
+                      <div
+                        className="form-group col-md-12 text-center"
+                        // data-animation="fadeInUp"
+                        // data-animation-delay="1s"
+                      >
+                        <button
+                          className="btn btn-default btn-radius"
+                          name="submit"
+                          type="submit"
+                          onClick={registerUser}
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    )}
+                    {loading && (
+                      <CircularProgress
+                        className={classes.progressBar}
+                        color="primary"
+                      />
+                    )}
+                  </form>
+                </div>
+              </div>
+              <div className="divider small_divider"></div>
+              <div className="text-center">
+                <span
+                  // className="animation"
+                  // data-animation="fadeInUp"
+                  // data-animation-delay="1s"
+                >
+                  Already have an account? <Link to={"/login"}> Login</Link>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <Footer />
     </React.Fragment>
   );
@@ -357,7 +487,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
-      padding: 10
+      padding: 10,
     },
     formContainer: {
       backgroundColor: "#fff",
