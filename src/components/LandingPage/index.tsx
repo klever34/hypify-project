@@ -41,7 +41,7 @@ const LandingPage: React.FC = () => {
               data-animation="fadeInDown"
               data-animation-delay="1s"
             >
-              <img className="logo_light" src="assets/images/" alt="logo" />
+              <img className="logo_light" src="assets/images/logo.jpeg" alt="logo" style={{ height: 50}} />
               <img
                 className="logo_dark"
                 src="assets/images/logo_dark.png"
