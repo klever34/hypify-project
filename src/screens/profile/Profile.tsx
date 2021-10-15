@@ -80,10 +80,13 @@ const ProfilePage: React.FC = () => {
   // const [password, setPassword] = useState<string>("");
   // const [message, setErrorMessage] = useState<string>("");
   const [loading, showLoading] = useState<boolean>(false);
+  const [loading2, showLoading2] = useState<boolean>(false);
   const [errors, setErrors] = useState([]);
   const [showMsg, setMsg] = useState<boolean>(false);
+  const [showMsg2, setMsg2] = useState<boolean>(false);
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
+  const [wallet, setWallet] = useState("");
   // const { userData = false } = useAppSelector(selectStateValues);
   // const logout = () => {
   //   localStorage.clear();
@@ -145,9 +148,47 @@ const ProfilePage: React.FC = () => {
     }
   };
 
+  const addWallet = async () => {
+    const token = await localStorage.getItem("access-token");
+    try {
+      showLoading2(true);
+      const response = await axios.post(
+        `${baseUrl}wallet/add/`,
+        {
+          wallet_address: wallet,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response.data);
+
+      if (response.status === 201) {
+        setMsg2(true);
+        setWallet("");
+      } else {
+        // setErrorMessage("Failed Authentication");
+      }
+      showLoading(false);
+    } catch (error: any) {
+      console.log(error.response.data);
+      if (error.response.data.errors.length > 0) {
+        setErrors(error.response.data.errors);
+      }
+      showLoading2(false);
+    }
+  }
+
   const handleChangeEmail = (text: React.ChangeEvent<HTMLInputElement>) => {
     const email = text.currentTarget.value;
     setEmail(email);
+  };
+
+  const handleChangeWallet = (text: React.ChangeEvent<HTMLInputElement>) => {
+    const wallet = text.currentTarget.value;
+    setWallet(wallet);
   };
 
   return (
@@ -230,12 +271,14 @@ const ProfilePage: React.FC = () => {
               </div>
             </Grid>
           </Grid>
+          <p style={{margin: 40}}>
           {errors.length > 0 &&
             errors.map((item: any, i) => (
               <Alert key={i} severity="warning">
                 {item.message}
               </Alert>
             ))}
+            </p>
           {showMsg && (
             <Alert severity="success">
               Invitation has been created successfully
@@ -264,6 +307,41 @@ const ProfilePage: React.FC = () => {
                 </Button>
               )}
               {loading && (
+                <CircularProgress
+                  className={classes.progressBar}
+                  color="primary"
+                />
+              )}
+            </div>
+          </Grid>
+          {showMsg2 && (
+            <Alert severity="success">
+              Your tron wallet address has been added successfully
+            </Alert>
+          )}
+          <Grid spacing={5} direction="row" justify="center">
+            <div>
+              <input
+                className={classes.formInput}
+                type="text"
+                name="wallet"
+                placeholder="Wallet"
+                onChange={(text) => handleChangeWallet(text)}
+                value={wallet}
+              />
+
+              {!loading2 && (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={classes.authBtn}
+                  size={"small"}
+                  onClick={addWallet}
+                >
+                  Add Wallet
+                </Button>
+              )}
+              {loading2 && (
                 <CircularProgress
                   className={classes.progressBar}
                   color="primary"
