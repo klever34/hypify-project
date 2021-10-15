@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 // import backgroundImageHorizontal from "../../assets/images/bg_landscape.png";
-import backgroundImageVertical from "../../assets/images/bg_portrait.png";
-import Footer from "../../components/footer/Footer";
+// import backgroundImageVertical from "../../assets/images/bg_portrait.png";
+// import Footer from "../../components/footer/Footer";
 import { Box, Typography } from "@material-ui/core";
 // import { Link } from "react-router-dom";
 import axios from "axios";
@@ -11,7 +11,6 @@ import { baseUrl } from "../../constants";
 import queryString from "query-string";
 import { useHistory, useLocation } from "react-router-dom";
 import { Alert } from "@material-ui/lab";
-import { Link } from "react-router-dom";
 
 const ValidateEmail: React.FC = () => {
 //   const [code, ] = useState<string>("");

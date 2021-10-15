@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Footer from "../../components/footer/Footer";
+// import Footer from "../../components/footer/Footer";
 import { Box, Typography, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 // import { useAppSelector, useAppDispatch } from "../../app/hooks";
